@@ -1,11 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef , useContext} from "react";
 
 import classes from "./AuthForm.module.css";
+import AuthContext from "../../Store/auth-context";
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  const authCtx= useContext(AuthContext)
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading]= useState(false);
 
@@ -32,7 +34,7 @@ const AuthForm = () => {
       url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBygTFFEDqS5q8VmNCxNgFaxenTeTyaBMs'
       
     }
-    fetch(
+    fetch(  
       url,
       {
         method: "POST",
@@ -63,7 +65,7 @@ const AuthForm = () => {
       }
     })
     .then((data)=>{
-      console.log(data);
+      authCtx.login(data.IdToken)
     })
     .catch((err)=>{
       alert(err.message)
