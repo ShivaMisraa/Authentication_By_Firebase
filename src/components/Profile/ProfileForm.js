@@ -1,9 +1,10 @@
 import classes from './ProfileForm.module.css';
 import { useRef, useContext } from 'react';
 import AuthContext from '../../Store/auth-context';
-
+import {useHistory} from 'react-router-dom';
 
 const ProfileForm = () => {
+  const histoty= useHistory();
   const newPasswordInputRef= useRef();
   const authCtx= useContext(AuthContext);
 
@@ -25,7 +26,8 @@ const ProfileForm = () => {
       'Content-Type': 'application/json'
      }
     }).then(res=>{
-      alert(res);
+      alert(res,JSON, "Congrats Your Password has been changed!!");
+      histoty.replace('/');
     })
   }
   return (
@@ -35,7 +37,7 @@ const ProfileForm = () => {
         <input type='password' id='new-password' minLength="7" ref={newPasswordInputRef}/>
       </div>
       <div className={classes.action}>
-        <button>Change Password</button>
+        <button onClick={submitHandler}>Change Password</button>
       </div>
     </form>
   );
