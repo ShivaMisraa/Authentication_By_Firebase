@@ -45,7 +45,7 @@ const AuthForm = () => {
           returnSecureToken: true,
         }),
         headers: {
-          "Content-Type": "apllication/json",
+          "Content-Type": "application/json",
         },
       }
     ).then(res=>{
@@ -66,7 +66,9 @@ const AuthForm = () => {
       }
     })
     .then((data)=>{
-      authCtx.login(data.IdToken);
+      console.log(data)
+      authCtx.login(data.idToken);
+
       history.replace('/');
     })
     .catch((err)=>{
@@ -92,7 +94,7 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          {!isLoading && <button>{isLogin ? "Login" : "Create Account"}</button>}
+          {!isLoading && <button  >{isLogin ? "Login" : "Create Account"}</button>}
           {(isLoading && <p>Sending Request...</p> )}
           <button
             type="button"

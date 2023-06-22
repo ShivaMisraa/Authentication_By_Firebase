@@ -14,10 +14,12 @@ export const AuthContextProvider = (props) => {
 
   const logInHandler = (token) => {
     setToken(token);
+    console.log(token)
   };
 
   const logoutHandler = () => {
     setToken(null);
+
   };
 
   const contextValue = {
