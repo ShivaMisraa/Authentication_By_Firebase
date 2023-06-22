@@ -14,7 +14,7 @@ const MainNavigation = () => {
     authCtx.logout();
     
   }
-
+ 
   
   return (
     <header className={classes.header}>
